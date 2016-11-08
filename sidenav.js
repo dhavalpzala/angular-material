@@ -11,6 +11,10 @@ app.controller('SideNavCtrl', function($scope, $mdSidenav) {
     $mdSidenav('left').close();
     $mdSidenav('right').open();
   }
+
+  $scope.drop = function () {
+    $mdSidenav('right').close();
+  }
 });
 
 app.directive('draggable', function() {
@@ -54,7 +58,9 @@ app.directive('draggable', function() {
 
 app.directive('droppable', function() {
   return {
-    scope: {},
+    scope: {
+      drop: '&'
+    },
     link: function(scope, element) {
       // again we need the native object
       var el = element[0];
@@ -97,7 +103,10 @@ app.directive('droppable', function() {
           this.classList.remove('over');
 
           var item = document.getElementById(e.dataTransfer.getData('Text'));
-          this.appendChild(item);
+          this.appendChild(item.cloneNode(true));
+
+          // call the drop function
+          scope.$apply('drop()');
 
           return false;
         },

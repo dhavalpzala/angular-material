@@ -5,50 +5,44 @@
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 </head>
 <body ng-app="SampleApp" ng-cloak>
-  <!--
-  Your HTML content here
--->
-
-<!-- Angular Material requires Angular.js Libraries -->
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-
-<!-- Angular Material Library -->
-<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-
-<!-- Your application bootstrap  -->
-<script type="text/javascript" src="sidenav.js"></script>
-
-<div ng-controller="SideNavCtrl" layout="row" layout-margin>
-  <div>
-    <md-button class="md-raised md-primary" ng-click="toggleSidenav('left')">Left</md-button>
-    <md-button class="md-raised md-primary" ng-click="toggleSidenav('right')">Right</md-button>
+  <div ng-controller="SideNavCtrl" layout="row">
+    <div>
+      <md-button class="md-raised md-primary" ng-click="toggleSidenav('left')">Left</md-button>
+      <md-button class="md-raised md-primary" ng-click="toggleSidenav('right')">Right</md-button>
+    </div>
+    <md-sidenav flex="50" class="md-sidenav-left" md-component-id="left">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Available Items</h1>
+      </md-toolbar>
+      <md-content layout-padding="" >
+        <div class="">
+          <md-button draggable id="item_{{item.id}}" ng-repeat="item in items" class="md-raised md-primary" drag-start="dragStart()">
+            {{item.name}}
+          </md-button>
+        </div>
+      </md-content>
+    </md-sidenav>
+    <md-sidenav flex="50" class="md-sidenav-right" md-component-id="right">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Used Items</h1>
+      </md-toolbar>
+      <md-content layout-padding="">
+        <div class="" droppable drop="drop()" style="min-height: 400px;">
+        </div>
+      </md-content>
+    </md-sidenav>
   </div>
-  <md-sidenav flex="50" class="md-sidenav-left" md-component-id="left">
-    <md-toolbar class="md-theme-indigo">
-      <h1 class="md-toolbar-tools">Available Items</h1>
-    </md-toolbar>
-    <md-content layout-padding="" >
-      <div class="">
-        <md-button draggable id="item_{{item.id}}" ng-repeat="item in items" class="md-raised md-primary" drag-start="dragStart()">
-          {{item.name}}
-        </md-button>
-      </div>
-    </md-content>
-  </md-sidenav>
 
-  <md-sidenav flex="50" class="md-sidenav-right" md-component-id="right">
-    <md-toolbar class="md-theme-indigo">
-      <h1 class="md-toolbar-tools">Used Items</h1>
-    </md-toolbar>
-    <md-content layout-padding="">
-      <div class="" droppable style="min-height: 400px;">
-      </div>
-    </md-content>
-  </md-sidenav>
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 
-</div>
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+  <!-- Your application bootstrap  -->
+  <script type="text/javascript" src="sidenav.js"></script>
 </body>
 </html>
